@@ -1,13 +1,11 @@
 class Solution:
-    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        head = tail = ListNode(0)
-        while l1 and l2:
-            if l1.val > l2.val:
-                tail.next = l2
-                l2 = l2.next
-            else:
-                tail.next = l1
-                l1 = l1.next
-            tail = tail.next
-        tail.next = l1 or l2 
-        return head.next
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return 1 
+        
+        replacement_index: int = 1 
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]:
+                nums[replacement_index] = nums[i]
+                replacement_index += 1
+        return replacement_index 
