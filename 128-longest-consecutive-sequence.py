@@ -33,3 +33,17 @@ class Solution:
             return 0
         self.seen.add(num)
         return 1 + self._checkLowerAdjacent(num - 1)
+    
+    
+    
+# Better solution to skip if (num - 1) in set
+def longestConsecutive(self, nums):
+    nums = set(nums)
+    best = 0
+    for x in nums:
+        if x - 1 not in nums:
+            y = x + 1
+            while y in nums:
+                y += 1
+            best = max(best, y - x)
+    return best
